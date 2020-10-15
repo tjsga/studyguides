@@ -1,6 +1,6 @@
-{% extends "base.html" %} {% block main %}
+{% extends "base.html" %} {% load static %} {% block main %}
 <main>
-  <h2>{{subject.name}} / {{ course.name }}</h2>
+  <h1><a href="/">All</a> / <a href="/{{subject.url}}">{{subject.name}}</a> / <a href="/{{subject.url}}/{{course.url}}">{{course.name}}</a></h1>
   {% for guide in guides %}
   <p class="color-primary"><a href="{{guide.url}}"/>{{ guide.name }}</a></p>
   {% endfor %}

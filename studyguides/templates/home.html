@@ -1,9 +1,9 @@
-{% extends "base.html" %} {% block main %}
+{% extends "base.html" %} {% load static %} {% block main %}
 <main>
-  <h1><a href="/">Subjects</a></h1>
+  <h1><a href="/">All</a></h1>
 
   {% for subject, courses in subjects %}
-  <h2>{{ subject.name }}</h2>
+  <a href="/{{subject.url}}"><h2>{{ subject.name }}</h2>
 
   {% for course in courses %}
   <p class="color-primary"><a href="/{{subject.url}}/{{course.url}}"/>{{ course.name }}</a></p>
