@@ -2,7 +2,7 @@
 <main>
   <h1><a href="/">All</a> / <a href="/{{subject.url}}">{{subject.name}}</a></h1>
   {% for course in courses %}
-  <p class="color-primary"><a href="/{{subject.url}}/{{course.url}}"/>{{ course.name }}</a></p>
+  <p class="item"><a href="/{{subject.url}}/{{course.url}}"/>{{ course.name }}</a></p>
   {% endfor %}
 </main>
 {% endblock %}

@@ -25,8 +25,13 @@ main {
   margin: 30px;
 }
 
-.color-primary {
+.item {
   color: #568ea3;
+}
+
+.teacher {
+  color: #a26769;
+  font-weight: bold;
 }
 
 h1 {
