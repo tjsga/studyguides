@@ -28,3 +28,11 @@ main {
 .color-primary {
   color: #568ea3;
 }
+
+h1 {
+  opacity: 0.5;
+  transition: all 0.2s ease;
+}
+h1:hover {
+  opacity: 1;
+}

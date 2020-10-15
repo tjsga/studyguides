@@ -1,9 +1,8 @@
 {% extends "base.html" %} {% block main %}
 <main>
+  <h2>{{ subject.name }}</h2>
   {% for course in courses %}
-  
   <p class="color-primary"><a href="/{{subject.url}}/{{course.url}}"/>{{ course.name }}</a></p>
-
   {% endfor %}
 </main>
 {% endblock %}
