@@ -21,12 +21,12 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('courses/', include('studyguides.apps.courses.urls', namespace = 'courses')),
-    path('auth/', include('studyguides.apps.auth.urls', namespace = 'auth')),
+    path('auth/', include('studyguides.apps.auth.urls', namespace='auth')),
+    path('', include('studyguides.apps.courses.urls', namespace='courses')),
     path('', include('studyguides.apps.home.urls', namespace='home')),
-    path('', include('social_django.urls', namespace = 'social')),
+    path('', include('social_django.urls', namespace='social')),
 
 ]
 if settings.DEBUG:
     urlpatterns.extend(static("static/", document_root=settings.STATIC_ROOT))
-    urlpatterns.extend(static("media/", document_root = settings.MEDIA_ROOT))
+    urlpatterns.extend(static("media/", document_root=settings.MEDIA_ROOT))
