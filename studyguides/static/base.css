@@ -1,0 +1,30 @@
+/* Typography */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  font-family: "Red Hat Text", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fffbfb;
+  color: #090302;
+  font-size: 1.2em;
+}
+a,
+a:active {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+a:hover {
+  color: #68c3d4;
+}
+
+main {
+  margin: 30px;
+}
+
+.subject {
+  color: #568ea3;
+}

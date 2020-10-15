@@ -2,17 +2,27 @@
 {% load static %}
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Study Guide Bank</title>
-    <meta name="description" content="Study guide bank for students of Thomas Jefferson High School for Science and Technology.">
-    <meta name="keywords" content="tjhsst, study bank, study guide, guide bank, tjhsst study, tjhsst background-size">
-  
-    
-</script>
-  {% block head %}{% endblock %}
+    <meta
+      name="description"
+      content="Study guide bank for students of Thomas Jefferson High School for Science and Technology."
+    />
+    <meta
+      name="keywords"
+      content="tjhsst, study bank, study guide, guide bank, tjhsst study, tjhsst background-size"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'normalize.css' %}" />
+    <link rel="stylesheet" href="{% static 'base.css' %}" />
+
+    {% block head %}{% endblock %}
   </head>
   <body id="page">
-  {% block main %}{% endblock %}
+    {% block main %}{% endblock %}
   </body>
 </html>
