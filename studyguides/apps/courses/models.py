@@ -33,9 +33,12 @@ class Guide(models.Model):
     url = models.URLField(max_length=300)
 
     def __str__(self):
-        return f"[{self.course or 'N/A'}{(', ' + self.teacher) if self.teacher else ''}] {self.name}"
+        return self.name
 
 class Tag(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.SlugField(max_length=100, unique=True, validators=[RegexValidator(
         regex="^[a-z0-9_\-]+$", message="Only lowercase alphanumeric, dashes, and underscores allowed")])
+
+    def __str__(self):
+        return self.name
