@@ -2,7 +2,7 @@
 <main>
   <h1><a href="/">All</a> / <a href="/{{subject.url}}">{{subject.name}}</a> / <a href="/{{subject.url}}/{{course.url}}">{{course.name}}</a></h1>
   {% for guide in guides %}
-  <p class="item"><a href="{{guide.url}}"/>{% if guide.teacher %}<span class="teacher">[{{guide.teacher}}] </span>{% endif %}{{ guide.name }}</a></p>
+  <p class="item"><a href="{{guide.url}}" target="_blank"/>{% if guide.teacher %}<span class="teacher">[{{guide.teacher}}] </span>{% endif %}{{ guide.name }}</a></p>
   {% endfor %}
 </main>
 {% endblock %}
