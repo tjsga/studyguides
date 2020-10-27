@@ -5,10 +5,10 @@
   <h1><a href="/">All</a></h1>
 
   {% for subject, courses in subjects %}
-  <a href="/{{subject.url}}"><h2>{{ subject.name }}</h2>
+  <a href="{% url 'courses:subject_view' subject.url %}"><h2>{{ subject.name }}</h2>
 
   {% for course in courses %}
-  <p class="item"><a href="/{{subject.url}}/{{course.url}}"/>{{ course.name }}</a></p>
+  <p class="item"><a href="{% url 'courses:course_view' %} subject.url course.url">{{ course.name }}</a></p>
 
   {% endfor %} {% endfor %}
 </main>
