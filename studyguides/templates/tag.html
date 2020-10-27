@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block main %}
+<main>
+    <h1><a href="/">All</a> / {{ tag }}</h1>
+    {% for guide, tags in guides %}
+      <p class="item">
+          <b><a href="{{ guide.url }}">{{ guide.name }}</a></b>&nbsp;&nbsp;&nbsp;&nbsp;{% for t in tags %}<a href='{% url "courses:tag" t.name %}'>{{ t }}  </a>{% endfor %}
+      </p>
+    {% endfor %}
+</main>
+{% endblock %}

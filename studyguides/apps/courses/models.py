@@ -8,7 +8,7 @@ class Subject(models.Model):
     url = models.CharField("URL", max_length=20, unique=True, validators=[RegexValidator(
         regex="^[a-zA-Z0-9_\-]+$", message="Only alphanumeric, dashes, and underscores allowed")])
 
-    courses = models.ManyToManyField("Course", related_name="subject", null=True, blank=True)
+    courses = models.ManyToManyField("Course", related_name="subject")
 
     def __str__(self):
         return self.name
@@ -28,7 +28,7 @@ class Guide(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
 
-    tags = models.ManyToManyField("Tag", null=True)
+    tags = models.ManyToManyField("Tag", related_name="guide")
     course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
     url = models.URLField(max_length=300)
 

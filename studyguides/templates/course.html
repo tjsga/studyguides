@@ -1,8 +1,8 @@
 {% extends "base.html" %} {% load static %} {% block main %}
 <main>
   <h1><a href="/">All</a> / <a href="/{{subject.url}}">{{subject.name}}</a> / <a href="/{{subject.url}}/{{course.url}}">{{course.name}}</a></h1>
-  {% for guide in guides %}
-  <p class="item"><a href="{{guide.url}}" target="_blank"/>{% if guide.teacher %}<span class="teacher">[{{guide.teacher}}] </span>{% endif %}{{ guide.name }}</a></p>
+  {% for guide, tags in guides %}
+  <p class="item"><b><a href="{{guide.url}}">{{ guide.name }}</a></b>&nbsp;&nbsp;&nbsp;&nbsp;{% for t in tags %}<a href='{% url "courses:tag" t.name %}'>{{ t }}  </a>{% endfor %}</p>
   {% endfor %}
 </main>
 {% endblock %}
