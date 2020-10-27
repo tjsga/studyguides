@@ -2,7 +2,7 @@
 <main>
   <h1><a href="{% url 'home:index' %}">All</a> / <a href="{% url 'courses:subject_view' subject.url %}">{{subject.name}}</a></h1>
   {% for course in courses %}
-  <p class="item"><a href="{% url 'courses:course_view' %} subject.url course.url">{{ course.name }}</a></p>
+  <p class="item"><a href="{% url 'courses:course_view' subject.url course.url %}">{{ course.name }}</a></p>
   {% endfor %}
 </main>
 {% endblock %}
