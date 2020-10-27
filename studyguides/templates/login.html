@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+    <link rel='stylesheet' href="{% static 'login.css' %}">
+{% endblock %}
+
+{% block main %}
+    <main>
+        <h1 class='header_title'>Study Guides</h1>
+        <div class='login-box'>
+            <p><b>Login in with your Intranet account</b> to access the Study Guide website.</p>
+            <a href="{% url 'social:begin' 'ion' %}{% if request.GET.next %}?next={{ request.GET.next|urlencode }}{% endif %}" class='btn btn-ion'>Log in with Ion</a>
+        </div>
+    </main>
+{% endblock %}

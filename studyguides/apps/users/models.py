@@ -1,48 +1,82 @@
-from django.contrib.auth.models import AbstractUser
-from django.db import models
-
-from social_django.utils import load_strategy
-
-import requests
 import logging
+
+from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import UserManager as DjangoUserManager
+from django.db import models
 
 logger = logging.getLogger(__name__)
 
-# Create your models here.
-class User(AbstractUser):
-    id = models.AutoField(primary_key = True)
-    full_name = models.CharField(max_length = 105)
+
+class UserManager(DjangoUserManager):
+    pass
+
+
+class User(AbstractBaseUser):
+    objects = UserManager()
+
+    USERNAME_FIELD = "username"
+    EMAIL_FIELD = "email"
+    REQUIRED_FIELDS = ["first_name", "last_name", "email", "is_teacher"]
+
+    id = models.AutoField(primary_key=True)
+
+    username = models.CharField(unique=True, max_length=32, null=False, blank=False)
+    first_name = models.CharField(max_length=35, null=False, blank=False)
+    last_name = models.CharField(max_length=70, null=False, blank=False)
+    email = models.EmailField(max_length=50, null=False, blank=False)
+
+    is_active = models.BooleanField(default=True, null=False)
+    is_service = models.BooleanField(default=False, null=False)
+    is_student = models.BooleanField(default=False, null=False)
+    is_teacher = models.BooleanField(default=False, null=False)
+    is_superuser = models.BooleanField(default=False, null=False)
+    _is_staff = models.BooleanField(default=False, null=False)
+
+    date_joined = models.DateTimeField(auto_now_add=True)
+
+    def has_perm(self, perm, obj=None) -> bool:  # pylint: disable=unused-argument
+        return self.is_superuser
+
+    def has_module_perms(self, app_label) -> bool:  # pylint: disable=unused-argument
+        return self.is_superuser
 
     @property
-    def short_name(self):
-        return self.username
-    def __str__(self):
+    def is_staff(self) -> bool:
+        return self._is_staff or self.is_superuser
+
+    @is_staff.setter
+    def is_staff(self, staff: bool) -> None:
+        self._is_staff = staff
+
+    @property
+    def full_name(self) -> str:
+        return self.first_name + " " + self.last_name
+
+    @property
+    def short_name(self) -> str:
+        return self.first_name
+
+    def get_full_name(self) -> str:
         return self.full_name
-    def empty_fields(self):
-        list = []
-        for field in User._meta.fields:
-            list.append((field.value_from_object(self),field))
-        return list
-    def api_request(self, url, params={}, refresh=True):
-        s = self.get_social_auth()
-        params.update({"format": "json"})
-        params.update({"access_token": s.access_token})
-        r = requests.get(
-            "https://ion.tjhsst.edu/api/{}".format(url),
-            params = params,
-        )
-        if r.status_code == 401:
-            if refresh:
-                try:
-                    self.get_social_auth().refresh_token(load_strategy())
-                except BaseException as e:
-                    logger.exception(str(e))
-                return self.api_request(url, params, False)
-            else:
-                logger.error(
-                    "Ion API Request Failure: {} {}".format(r.status_code,
-                                                            r.json()))
-        return r.json()
+
+    def get_short_name(self) -> str:
+        return self.short_name
 
     def get_social_auth(self):
-        return self.social_auth.get(provider = "ion")
+        return self.social_auth.get(provider="ion")
+
+    def __str__(self):
+        return self.username
+
+    def __repr__(self):
+        return "<User: {} ({})>".format(self.username, self.id)
+
+
+class Group(models.Model):
+    id = models.AutoField(primary_key=True)
+    is_service = models.BooleanField(default=False)
+    name = models.CharField(max_length=32)
+    users = models.ManyToManyField(User, related_name="unix_groups")
+
+    def __str__(self):
+        return self.name

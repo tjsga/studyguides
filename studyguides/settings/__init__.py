@@ -42,9 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'social_django',
     'studyguides.apps.courses',
-    'studyguides.apps.home',
+    'studyguides.apps.auth',
     'studyguides.apps.users',
-    'studyguides.apps.auth.apps.AuthConfig',
+    'studyguides.apps.home',
 ]
 
 MIDDLEWARE = [
@@ -72,8 +72,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -111,12 +109,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = (
-    'studyguides.apps.auth.oauth.IonOauth2',
-    'django.contrib.auth.backends.ModelBackend',
-)
+AUTHENTICATION_BACKENDS = ('studyguides.apps.auth.oauth.IonOauth2',)
 
-SOCIAL_AUTH_USER_FIELDS = ['username', 'full_name', 'first_name', 'last_name', 'email', 'id']
+SOCIAL_AUTH_USER_FIELDS = ['username', 'first_name', 'last_name', 'email', 'id', "is_teacher", "is_student",]
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
@@ -134,8 +129,6 @@ SOCIAL_AUTH_PIPELINE = (
 
 AUTH_USER_MODEL = "users.User"
 
-SOCIAL_AUTH_ALWAYS_ASSOCIATE = True
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -150,10 +143,12 @@ USE_L10N = True
 USE_TZ = True
 
 LOGIN_URL = "auth:login"
-LOGIN_REDIRECT_URL = "users:index"
-LOGOUT_REDIRECT_URL = "home:index"
+LOGIN_REDIRECT_URL = "auth:index"
 
-SOCIAL_AUTH_LOGIN_ERROR_URL = '/'
+SESSION_SAVE_EVERY_REQUEST = True
+
+SOCIAL_AUTH_ALWAYS_ASSOCIATE = True
+SOCIAL_AUTH_LOGIN_ERROR_URL = "/"
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 
 # Static files (CSS, JavaScript, Images)

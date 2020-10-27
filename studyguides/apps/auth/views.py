@@ -1,10 +1,10 @@
-from django.shortcuts import render
-from django.contrib.auth.views import LogoutView
+from django.shortcuts import redirect, render
 
-# Create your views here.
+def index(request):
+    if request.user.is_authenticated:
+        return redirect("home:index")
+    else:
+        return redirect("auth:login")
 
 def login(request):
-    return render(request, "auth/login.html")
-
-logout = LogoutView.as_view()
-
+    return render(request, "login.html")
