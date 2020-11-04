@@ -37,7 +37,8 @@ class Guide(models.Model):
 
 class Tag(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.SlugField(max_length=100, unique=True, validators=[RegexValidator(
+    name = models.CharField(max_length=100, unique=True)
+    url = models.SlugField(max_length=100, unique=True, null=True, validators=[RegexValidator(
         regex="^[a-z0-9_\-]+$", message="Only lowercase alphanumeric, dashes, and underscores allowed")])
 
     def __str__(self):
