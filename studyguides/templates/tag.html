@@ -2,13 +2,36 @@
 
 {% load static %}
 
-{% block main %}
-<main>
-    <h1><a href="/">All</a> / {{ tag }}</h1>
-    {% for guide, tags in guides %}
-      <p class="item">
-          <b><a href="{{ guide.url }}">{{ guide.name }}</a></b>&nbsp;&nbsp;&nbsp;&nbsp;{% for t in tags %}<a href='{% url "courses:tag" t.name %}'>{{ t }}  </a>{% endfor %}
-      </p>
-    {% endfor %}
+{% block path %}
+  <span class="bold size-2 hoverable">
+    <a href="/">
+      All
+    </a> / 
+    <a href='{% url "courses:tag" tag.name %}'>
+      {{ tag }}
+    </a>
+  </span>
+{% endblock %}
+
+{% block content %}
+  {% for guide, tags in guides %}
+  <div class="guide">
+    <div class="flex-row align-center space-between bold size-3">
+      <a
+        href="{{ guide.url }}"
+        target="_blank">
+        📰 {{ guide.name }}
+      </a>
+    </div><br/>
+    
+    <span class="size-075">
+      {% for t in tags %}
+      <a href='{% url "courses:tag" t.name %}'>
+        {{ t }}
+      </a>
+      {% endfor %}
+    </span>
+  </div>
+  {% endfor %}
 </main>
 {% endblock %}

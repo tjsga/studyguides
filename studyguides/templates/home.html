@@ -1,17 +1,31 @@
-{% extends "base.html" %} {% load static %} {% block main %}
-<main>
-  <p>DISCLAIMER: Please note these materials are student-made study guides over the past years. Some information may be outdated or not 100% reflective of the content your teacher is teaching. It is also possible the information is not 100% accurate. Therefore, make sure to not solely rely on these study guides. If you see an inconsistency in a study guide that confuses you, ask your teacher to clarify. SGA maintains this site but is not liable for the credibility of the information found. To contact SGA, please email SGA.tjhsst@gmail.com.</p>
-  
-  <br>
-  
-  <h1><a href="/">All</a></h1>
+{% extends "base.html" %} {% load static %}
+{% block disclaimer %}
+  <p>
+    DISCLAIMER: Please note these materials are student-made study guides over the past years. Some information may be outdated or not 100% reflective of the content your teacher is teaching. It is also possible the information is not 100% accurate. Therefore, make sure to not solely rely on these study guides. If you see an inconsistency in a study guide that confuses you, ask your teacher to clarify. SGA maintains this site but is not liable for the credibility of the information found. To contact SGA, please email SGA.tjhsst@gmail.com.
+  </p>
+{% endblock %}
 
-  {% for subject, courses in subjects %}
-  <a href="{% url 'courses:subject_view' subject.url %}"><h2>{{ subject.name }}</h2>
+{% block path %}
+  <a href="/" class="bold size-2 hoverable">All</a>
+{% endblock %}
 
-  {% for course in courses %}
-  <p class="item"><a href="{% url 'courses:course_view' subject.url course.url %}">{{ course.name }}</a></p>
-
-  {% endfor %} {% endfor %}
-</main>
+{% block content %}
+  <div class="flex-col">
+    {% for subject, courses in subjects %}
+    <div class="subject">
+      <a
+        href="{% url 'courses:subject_view' subject.url %}"
+        class="bold size-3">
+        📚 {{ subject.name }}
+      </a>
+      <!-- {% for course in courses %}
+        <p class="item">
+          <a href="{% url 'courses:course_view' subject.url course.url %}">
+            {{ course.name }}
+          </a>
+        </p>
+      {% endfor %} -->
+    </div>
+    {% endfor %}
+  </div>
 {% endblock %}

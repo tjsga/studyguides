@@ -23,6 +23,16 @@
     {% block head %}{% endblock %}
   </head>
   <body id="page">
-    {% block main %}{% endblock %}
+    <span class="bold size-4 my-2 josefin-sans text-center">
+      TJHSST Study Guide Collection
+    </span>
+    <main>
+      {% block disclaimer %}{% endblock %}
+
+      <div class="my-2">
+        {% block path %}{% endblock %}
+      </div>
+      {% block content %}{% endblock %}
+    </main>
   </body>
 </html>

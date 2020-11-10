@@ -2,13 +2,27 @@
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Josefin Sans";
+  src: url("/static/josefin-sans-regular.ttf");
+}
+
+@font-face {
+  font-family: "Sofia Pro";
+  src: url("/static/sofia-pro-regular.otf");
 }
 
 html,
 body {
-  font-family: "Red Hat Text", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fffbfb;
-  color: #090302;
+  font-family: "Sofia Pro", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* background-color: #fffbfb; */
+  background-color: #221f3d;
+  /* color: #090302; */
+  color: #eee;
   font-size: 1.2em;
 }
 a,
@@ -22,11 +36,8 @@ a:hover {
 }
 
 main {
-  margin: 30px;
-}
-
-.item {
-  color: #568ea3;
+  width: max(1000px, 50vw);
+  margin: 30px auto;
 }
 
 .teacher {
@@ -34,10 +45,142 @@ main {
   font-weight: bold;
 }
 
-h1 {
+.hoverable {
   opacity: 0.5;
   transition: all 0.2s ease;
 }
-h1:hover {
+.hoverable:hover {
   opacity: 1;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.josefin-sans {
+  font-family: "Josefin Sans";
+}
+
+.text-center {
+  display: block;
+  text-align: center;
+}
+
+.sofia-pro {
+  font-family: "Sofia Pro";
+}
+
+.size-075 {
+  font-size: 0.75em;
+}
+
+.size-1 {
+  font-size: 1em;
+}
+
+.size-2 {
+  font-size: 1.5em;
+}
+
+.size-3 {
+  font-size: 2em;
+}
+
+.size-4 {
+  font-size: 4em;
+}
+
+.my-1 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.my-2 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.m-2 {
+  margin: 10px;
+}
+
+.p-2 {
+  padding: 10px;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+div.subject-grid {
+  display: grid;
+  /* grid-template-columns: 1fr 1fr 1fr; */
+}
+
+/* Styles for groups within a subject */
+div.subject {
+  border-radius: 10px;
+  margin: 5px;
+  padding: 10px;
+  /* width: 400px; */
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+div.guide {
+  /* color: #568ea3; */
+  border-radius: 10px;
+  margin: 5px;
+  padding: 10px;
+  color: #eee;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.lighter {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.round {
+  border-radius: 10px;
+}
+
+a.subject-name {
+  text-align: center;
+  display: block;
+}
+
+a.open-guide-button {
+  padding: 3px;
+  border-radius: 5px;
+  background-color: white;
+  color: #707070;
+}
+
+a.tag {
+  padding: 5px;
+  border-radius: 1em;
+  border: 2px solid white;
+  margin: 0px 5px;
+}
+
+span {
+  display: block;
 }

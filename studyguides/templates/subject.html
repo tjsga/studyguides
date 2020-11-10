@@ -1,8 +1,25 @@
-{% extends "base.html" %} {% load static %} {% block main %}
-<main>
-  <h1><a href="{% url 'home:index' %}">All</a> / <a href="{% url 'courses:subject_view' subject.url %}">{{subject.name}}</a></h1>
-  {% for course in courses %}
-  <p class="item"><a href="{% url 'courses:course_view' subject.url course.url %}">{{ course.name }}</a></p>
-  {% endfor %}
-</main>
+{% extends "base.html" %} {% load static %}
+{% block path %}
+<span class="bold size-2 hoverable">
+  <a href="{% url 'home:index' %}">
+    All
+  </a> / 
+  <a href="{% url 'courses:subject_view' subject.url %}">
+    {{subject.name}}
+  </a>
+</span>
+{% endblock %}
+
+{% block content %}
+  <div class="flex-col">
+    {% for course in courses %}
+      <div class="subject">
+        <a
+          href="{% url 'courses:course_view' subject.url course.url %}"
+          class="bold size-3">
+          📖 {{ course.name }}
+        </a>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock %}
