@@ -34,5 +34,13 @@
       </div>
       {% block content %}{% endblock %}
     </main>
+    <div class="size-5 my-2 josefin-sans text-center">
+      {% if user.is_teacher %}
+        <a style="padding:20px;" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSddHARB7zIgCBN-swWkejx6f4wJNslxh5AnkS65BzJ2pt7uLQ/viewform?usp=sf_link">Report a Study Guide</a>
+      {% elif user.is_superuser or user.is_staff %}
+        <a style="padding:20px;" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSddHARB7zIgCBN-swWkejx6f4wJNslxh5AnkS65BzJ2pt7uLQ/viewform?usp=sf_link">Report a Study Guide</a>
+        <a style="padding:20px;" href="/admin">Access Admin Console</a>
+      {% endif %}
+    </div>
   </body>
 </html>
