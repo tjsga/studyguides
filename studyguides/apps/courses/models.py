@@ -41,5 +41,8 @@ class Tag(models.Model):
     url = models.SlugField(max_length=100, unique=True, null=True, validators=[RegexValidator(
         regex="^[a-z0-9_\-]+$", message="Only lowercase alphanumeric, dashes, and underscores allowed")])
 
+    class Meta:
+        ordering = ['url']
+
     def __str__(self):
         return self.name
