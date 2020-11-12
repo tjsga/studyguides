@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block path %}
+  <a href="/" class="bold size-2 hoverable">All</a>
+{% endblock %}
+
+{% block content %}
+    <h3 style='margin-bottom:-10px;'>Subjects</h3>
+    <ul>
+        {% if not subject_results %}
+            No Results
+        {% else %}
+            {% for s in subject_results %}
+                <a href="{% url 'courses:subject_view' s.url %}"><li>{{ s }}</li></a>
+            {% endfor %}
+        {% endif %}
+    </ul>
+
+    <h3 style='margin-bottom:-10px;'>Courses</h3>
+    <ul>
+        {% if not course_results %}
+            No Results
+        {% else %}
+            {% for c in course_results %}
+                <a href="{% url 'courses:course_view' c.1.url c.0.url %}"><li>{{ c.0 }}</li></a>
+            {% endfor %}
+        {% endif %}
+    </ul>
+
+    <h3 style='margin-bottom:-10px;'>Guides</h3>
+    <ul>
+        {% if not guide_results %}
+            No Results
+        {% else %}
+            {% for g in guide_results %}
+                <a target="_blank" href="{{ g.url }}"><li>{{ g }}</li></a>
+            {% endfor %}
+        {% endif %}
+    </ul>
+
+    <h3 style='margin-bottom:-10px;'>Tags</h3>
+    <ul>
+        {% if not tag_results %}
+            No Results
+        {% else %}
+            {% for t in tag_results %}
+                <a href="{% url 'courses:tag' t.name %}"><li>{{ t }}</li></a>
+            {% endfor %}
+        {% endif %}
+    </ul>
+{% endblock %}
