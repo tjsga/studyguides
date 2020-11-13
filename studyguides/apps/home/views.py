@@ -8,4 +8,4 @@ Course = apps.get_model("courses", "Course")
 
 @login_required
 def index_view(request):
-    return render(request, "home.html", {"subjects": [(subject, Course.objects.filter(subject=subject)) for subject in Subject.objects.all()]})
+    return render(request, "home.html", {"subjects": Subject.objects.all().order_by("name")})

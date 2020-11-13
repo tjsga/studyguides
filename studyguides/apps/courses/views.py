@@ -13,7 +13,7 @@ from .models import Subject, Course, Guide, Tag
 def subject_view(request, subject_url):
     subject = get_object_or_404(Subject, url=subject_url)
     return render(request, "subject.html", {"subject": subject,
-                                            "courses": subject.courses.all()})
+                                            "courses": subject.courses.all().order_by("name")})
 
 @login_required
 def course_view(request, subject_url, course_url):
@@ -21,12 +21,12 @@ def course_view(request, subject_url, course_url):
     course = get_object_or_404(Course, url=course_url)
     return render(request, "course.html", {"subject": subject,
                                            "course": course,
-                                           "guides": [[g, g.tags.all()] for g in Guide.objects.filter(course=course)]})
+                                           "guides": [[g, g.tags.all()] for g in Guide.objects.filter(course=course).order_by("name")]})
 
 @login_required
 def tag_view(request, tag):
     tag = get_object_or_404(Tag, name=tag)
-    return render(request, "tag.html", {"tag": tag, "guides": [[g, g.tags.all()] for g in tag.guide.all()]})
+    return render(request, "tag.html", {"tag": tag, "guides": [[g, g.tags.all()] for g in tag.guide.all().order_by("name")]})
 
 @login_required
 def search_view(request):
