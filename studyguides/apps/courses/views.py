@@ -35,10 +35,10 @@ def search_view(request):
     if q:
         q_list = q.split()
         context = {
-            "subject_results": Subject.objects.filter(reduce(operator.or_, (Q(name__contains=x) for x in q_list))),
-            "course_results": [[c, c.subject.all()[0]] for c in Course.objects.filter(reduce(operator.or_, (Q(name__contains=x) for x in q_list)))],
-            "guide_results": Guide.objects.filter(reduce(operator.or_, (Q(name__contains=x) for x in q_list))),
-            "tag_results": Tag.objects.filter(reduce(operator.or_, (Q(name__contains=x) for x in q_list))),
+            "subject_results": Subject.objects.filter(reduce(operator.or_, (Q(name__icontains=x) for x in q_list))),
+            "course_results": [[c, c.subject.all()[0]] for c in Course.objects.filter(reduce(operator.or_, (Q(name__icontains=x) for x in q_list)))],
+            "guide_results": Guide.objects.filter(reduce(operator.or_, (Q(name__icontains=x) for x in q_list))),
+            "tag_results": Tag.objects.filter(reduce(operator.or_, (Q(name__icontains=x) for x in q_list))),
             "sq": q
         }
         return render(request, 'search_results.html', context=context)
