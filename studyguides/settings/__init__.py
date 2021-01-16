@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'gdstorage',
     'social_django',
     'studyguides.apps.courses',
     'studyguides.apps.auth',
@@ -164,9 +165,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'studyguides/static'),
 )
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'studyguides/media')
-
-MEDIA_URL = "/media/"
+GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = os.path.join(BASE_DIR, 'studyguides/settings/key.json')
 
 USE_X_FORWARDED_HOST = True
 

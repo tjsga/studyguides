@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <form action='' method='post'>
+        {% csrf_token %}
+        Name: {{ guide_request.name }}<br><br>
+        Course: {{ course }}<br><br>
+        Tags:
+        <ul> 
+            {% for t in tags %}
+                <li>
+                    {{ t }}
+                </li>
+            {% endfor %}
+        </ul>
+        Guide: <a href="{{ guide_request.guide.url }}">{{ guide_request.guide }}</a><br>
+        <br>
+        <input type="submit" name="approve" value="Approve">
+        <input type="submit" name="reject" value="Reject">
+    </form>
+{% endblock %}

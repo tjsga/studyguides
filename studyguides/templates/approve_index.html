@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    Click on a guide below to view and approve or reject it.
+    <ul>
+        {% for r in guide_requests %}
+            <li>
+                <a href="{% url 'courses:approve_view' r.id %}" >{{ r }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
